@@ -21,13 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j!w6)&-w+t&7bxt9*+zd9*&eftrw=y^grnt$_5lb@c@j*92#a^'
+SECRET_KEY = config('SECRET_KEY_WEB')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
-CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS_WEB', default='').split(',')
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS_WEB', cast=Csv())
 
 # Application definition
 
@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'switchh.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": config('ENGINE'),
-        "NAME": config('NAME'),
-        "USER": config('USER'),
-        "PASSWORD": config('PASSWORD'),
-        "HOST": config('HOST'),
-        "PORT": config('PORT'),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config('DATABASE_NAME_WEB'),
+        "USER": config('DATABASE_USER_WEB'),
+        "PASSWORD": config('DATABASE_PASSWORD_WEB'),
+        "HOST": config('DATABASE_HOST_WEB'),
+        "PORT": config('DATABASE_PORT_WEB'),
     }
 }
 
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -138,10 +138,10 @@ MEDIA_URL = '/media/'
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
-EMAIL_BACKEND = config('EMAIL_BACKEND')
-EMAIL_HOST =    config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+EMAIL_BACKEND = config('EMAIL_BACKEND_WEB')
+EMAIL_HOST =    config('EMAIL_HOST_WEB')
+EMAIL_PORT = config('EMAIL_PORT_WEB')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER_WEB')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD_WEB')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS_WEB')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL_WEB')

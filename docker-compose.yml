@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  db_web:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - postgres_data_web:/var/lib/postgresql/data/
+    restart: unless-stopped
+
+  webapp:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.webapp
+    command: gunicorn switchh.wsgi:application --bind 0.0.0.0:8001 --workers 3 --timeout 120
+    environment:
+      - DJANGO_SETTINGS_MODULE=switchh.settings
+    env_file:
+      - .env
+    expose:
+      - "8001"
+    volumes:
+      - ./webapp_static:/webapp/staticfiles
+      - ./webapp_media:/webapp/media
+    depends_on:
+      - db_web
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./webapp_static:/webapp/staticfiles:ro
+      - ./webapp_media:/webapp/media:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - webapp
+    restart: unless-stopped
+
+volumes:
+  postgres_data_web:
