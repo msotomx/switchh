@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Switchh | Software PyMEs — Control total de tu negocio en la nube{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Switchh: Software multi-empresa y multi-almacenes, inventario, en tiempo real, compras, ventas, Facturacion CFDI y reportes. 100% web con prueba de 30 días.{% endblock %}">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { brand: { navy:'#0D3B66', blue:'#1F4E79', slate:'#2C3E50', gray:'#B0B0B0', white:'#FFFFFF', green:'#2ECC71' } },
+        fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial'] },
+        boxShadow: { soft:'0 10px 25px rgba(0,0,0,0.08)' }
+      }}
+    }
+  </script>
+
+  <!-- Favicon SVG embebido -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' ry='14' fill='%230D3B66'/%3E%3Cpath d='M14 34h36M14 24h26M24 44h26' stroke='%23FFFFFF' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="font-sans text-brand-slate bg-brand-white antialiased">
+  <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 bg-brand-blue text-white px-3 py-2 rounded-lg z-[100]">Saltar al contenido</a>
+
+  <!-- HEADER / NAV -->
+  <header class="sticky top-0 bg-white/80 backdrop-blur border-b border-brand-gray/30 z-50" role="banner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <a href="{% url 'leads:home' %}" class="flex items-center gap-2" aria-label="Inicio de Switchh">
+        <span class="inline-block w-8 h-8 rounded-xl bg-brand-navy"></span>
+        <span class="text-xl font-extrabold text-brand-navy tracking-tight">Switchh</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6" aria-label="Principal">
+        <a href="{% url 'leads:home' %}" class="hover:text-brand-navy {% if request.path == '/' %}text-brand-navy font-semibold{% endif %}">Inicio</a>
+        <a href="{% url 'leads:precio' %}" class="hover:text-brand-navy {% if request.path|slice:':8' == '/precio/' or request.path == '/precio' %}text-brand-navy font-semibold{% endif %}">Precios</a>
+        <a href="{% url 'leads:contacto' %}" class="hover:text-brand-navy {% if request.path|slice:':9' == '/contacto' %}text-brand-navy font-semibold{% endif %}">Contacto</a>
+      </nav>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://switchh.mx" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl bg-brand-green text-white font-semibold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-green/60">Ir a switchh.mx</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-brand-gray/50" aria-expanded="false" aria-controls="menuMovil" aria-label="Abrir menú">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+      </button>
+    </div>
+    <div id="menuMovil" class="md:hidden hidden border-t border-brand-gray/30" role="dialog" aria-label="Menú">
+      <nav class="px-4 py-3 grid gap-2" aria-label="Menú móvil">
+        <a href="{% url 'leads:home' %}" class="py-2">Inicio</a>
+        <a href="{% url 'leads:precio' %}" class="py-2">Precios</a>
+        <a href="{% url 'leads:contacto' %}" class="py-2">Contacto</a>
+        <a href="https://switchh.mx" target="_blank" rel="noopener" class="mt-2 inline-flex items-center justify-center px-4 py-2 rounded-xl bg-brand-green text-white font-semibold">Ir a switchh.mx</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="border-t border-brand-gray/30 py-10 text-sm" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-6 h-6 rounded-lg bg-brand-navy"></span>
+        <span>© <span id="year"></span> Switchh. Todos los derechos reservados.</span>
+      </div>
+      <nav class="flex items-center gap-4" aria-label="Legal">
+        <a href="#" class="hover:text-brand-navy">Privacidad</a>
+        <a href="#" class="hover:text-brand-navy">Términos</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JS común: menú móvil + año dinámico -->
+  <script>
+    (function(){
+      const b=document.getElementById('menuBtn');
+      const m=document.getElementById('menuMovil');
+      if(b&&m){ b.addEventListener('click',()=>{ const e=b.getAttribute('aria-expanded')==='true'; b.setAttribute('aria-expanded', String(!e)); m.classList.toggle('hidden'); }); }
+      const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
+    })();
+  </script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

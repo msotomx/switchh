@@ -1,0 +1,30 @@
+services:
+  webapp:
+    build: ./web_project                  # carpeta del proyecto web
+    env_file:
+      - ./web_project/.env
+    command: gunicorn web_site.wsgi:application --bind 0.0.0.0:8000
+    expose:
+      - "8000"
+    volumes:
+      - web_static:/app/staticfiles       # comparte estáticos con Nginx
+    depends_on:
+      - db                                # si tu web usa DB; si no, quítalo
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.25
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - web_static:/static/web:ro         # montamos los estáticos de la web
+      - ./nginx/certs:/etc/letsencrypt    # certs si usas certbot en host/contenedor
+    depends_on:
+      - webapp
+      - app                               # tu app principal (si ya existe)
+    restart: unless-stopped
+
+volumes:
+  web_static:

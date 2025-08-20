@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Switchh | Precios</title>
+  <meta name="description" content="Planes Premium y Platino de Switchh con prueba de 30 días. Control total en la nube." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  {% load static %}
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { navy:'#0D3B66', blue:'#1F4E79', slate:'#2C3E50', gray:'#B0B0B0', white:'#FFFFFF', green:'#2ECC71' }
+          },
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial'] },
+          boxShadow: { soft: '0 10px 25px rgba(0,0,0,0.08)' }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans text-brand-slate bg-brand-white antialiased">
+  <!-- HEADER / NAV -->
+  <header class="sticky top-0 bg-white/80 backdrop-blur border-b border-brand-gray/30 z-50" role="banner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <a href="{% url 'leads:home' %}" class="flex items-center gap-2" aria-label="Inicio de Switchh">
+        <span class="inline-block w-8 h-8 rounded-xl bg-brand-navy"></span>
+        <span class="text-xl font-extrabold text-brand-navy tracking-tight">Switchh</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6" aria-label="Principal">
+        <a href="{% url 'leads:home' %}" class="hover:text-brand-navy">Inicio</a>
+        <a href="{% url 'leads:precio' %}" class="hover:text-brand-navy text-brand-navy font-semibold">Precios</a>
+        <a href="{% url 'leads:contacto' %}" class="hover:text-brand-navy">Contacto</a>
+      </nav>
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://switchh.mx" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl bg-brand-green text-white font-semibold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-green/60">Iniciar en switchh.mx</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-brand-gray/50" aria-expanded="false" aria-controls="menuMovil" aria-label="Abrir menú">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+      </button>
+    </div>
+    <div id="menuMovil" class="md:hidden hidden border-t border-brand-gray/30" role="dialog" aria-label="Menú">
+      <nav class="px-4 py-3 grid gap-2" aria-label="Menú móvil">
+        <a href="{% url 'leads:home' %}" class="py-2">Inicio</a>
+        <a href="{% url 'leads:precio' %}" class="py-2">Precios</a>
+        <a href="{% url 'leads:contacto' %}" class="py-2">Contacto</a>
+        <a href="https://switchh.mx" target="_blank" rel="noopener" class="mt-2 inline-flex items-center justify-center px-4 py-2 rounded-xl bg-brand-green text-white font-semibold">Ir a switchh.mx</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO PRECIOS -->
+    <section class="bg-gradient-to-b from-brand-navy to-brand-blue text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold">Elige tu plan</h1>
+        <p class="mt-4 text-white/90 max-w-3xl mx-auto">Ambos incluyen todas las funciones del sistema y <strong>30 días para probar</strong>. Sin instalaciones, 100% en la nube.</p>
+      </div>
+    </section>
+
+    <!-- TARJETAS DE PRECIO -->
+    <section class="py-14 md:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Premium -->
+          <article class="p-6 rounded-2xl bg-white shadow-soft border border-brand-gray/20">
+            <header class="flex items-center justify-between">
+              <h2 class="text-2xl font-extrabold text-brand-navy">Paquete Premium</h2>
+              <p class="text-3xl font-extrabold text-brand-green">$499</p>
+            </header>
+            <p class="mt-1 text-sm text-brand-slate/70">menos de $42 pesos por mes • Pago anual</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> Incluye todas las opciones del sistema</li>
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> Compras, ventas, cotizaciones, facturación electrónica, movimientos por cliente y por proveedor</li>
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> 100% en la nube</li>
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> 30 días para probar y conocer el sistema</li>
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> Soporte vía WhatsApp</li>
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> El pago se realiza dentro de 30 días</li>
+            </ul>
+            <div class="mt-5 p-4 rounded-xl bg-brand-blue/5 border border-brand-blue/20 text-sm">
+              <p class="font-semibold">Un usuario por empresa</p>
+              <p class="mt-1">El Paquete Premium incluye un solo usuario por empresa.</p>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="https://switchh.mx" target="_blank" class="px-6 py-3 rounded-xl bg-brand-green text-white font-semibold hover:opacity-95">Comenzar prueba 30 días</a>
+            </div>
+          </article>
+
+          <!-- Platino -->
+          <article class="p-6 rounded-2xl bg-white shadow-soft border border-brand-gray/20">
+            <header class="flex items-center justify-between">
+              <h2 class="text-2xl font-extrabold text-brand-navy">Paquete Platino</h2>
+              <p class="text-3xl font-extrabold text-brand-green">$699</p>
+            </header>
+            <p class="mt-1 text-sm text-brand-slate/70">menos de $60 pesos por mes • Pago anual</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> Incluye todas las opciones del sistema</li>
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> Compras, ventas, cotizaciones, facturación electrónica, movimientos por cliente y por proveedor</li>
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> 100% en la nube</li>
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> 30 días para probar y conocer el sistema</li>
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> Soporte vía WhatsApp</li>
+              <li class="flex items-start gap-2"><span class="mt-1 w-2 h-2 rounded-full bg-brand-green"></span> El pago se realiza dentro de 30 días</li>
+            </ul> 
+            <div class="mt-5 p-4 rounded-xl bg-brand-blue/5 border border-brand-blue/20 text-sm">
+              <p class="font-semibold">Hasta 5 usuarios por empresa</p>
+              <p class="mt-1">El Paquete Platino incluye hasta 5 usuarios por empresa.</p>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="https://switchh.mx" class="px-6 py-3 rounded-xl bg-brand-green text-white font-semibold hover:opacity-95">Comenzar prueba 30 días</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="mt-8 text-xs text-brand-slate/70">Precios en MXN. Sujeto a términos de uso. La facturación electrónica requiere RFC válido.</p>
+      </div>
+    </section>
+
+    <!-- FAQ breve opcional -->
+    <section class="pb-14">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <h3 class="text-xl font-bold text-brand-navy">Preguntas frecuentes</h3>
+        <div class="mt-4 grid md:grid-cols-2 gap-6 text-sm">
+          <div>
+            <p class="font-semibold">¿Qué pasa si cancelo dentro de los 30 días?</p>
+            <p class="mt-1 text-brand-slate/80">No se realiza el cobro. Puedes cancelar en cualquier momento durante el periodo de prueba.</p>
+          </div>
+          <div>
+            <p class="font-semibold">¿Puedo cambiar de plan?</p>
+            <p class="mt-1 text-brand-slate/80">Sí, puedes cambiar de plan antes del cobro anual o al renovar.</p>
+          </div>
+          <div>
+            <p class="font-semibold">¿En cuanto tiempo puedo empezar a usar el sistema?</p>
+            <p class="mt-1 text-brand-slate/80">Puedes empezar de inmediato, con solo 2 pasos: 1- has click en "iniciar en switchh.mx" 2- has click en "Empresa Nueva", aqui vas a registrar los datos de tu empresa y listo, ¡ya puedes empezar!</p>
+          </div>
+          <div>
+            <p class="font-semibold">¿Cuál es el Precio total?</p>
+            <p class="mt-1 text-brand-slate/80">El precio del Paquete Premium es de $499 pesos y el precio del Paquete Platino es de $699 pesos. Pago Unico por 12 meses.</p>
+          </div>
+          <div>
+            <p class="font-semibold">¿Puedo usar el módulo de facturación electrónica solamente?</p>
+            <p class="mt-1 text-brand-slate/80">Si, solo tienes que registrar tus clientes y productos/servicios, además de tus datos fiscales para que el sistema pueda timbrar tus facturas</p>
+          </div>
+          <div>
+            <p class="font-semibold">¿Puedo accesar la información desde mi celular?</p>
+            <p class="mt-1 text-brand-slate/80">Si, desde cualquier dispositivo móvil y desde cuaquier lugar con acceso a internet.</p>
+          </div>
+
+        </div>
+        
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-brand-gray/30 py-10 text-sm" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-6 h-6 rounded-lg bg-brand-navy"></span>
+        <span>© <span id="year"></span> Switchh. Todos los derechos reservados.</span>
+      </div>
+      <nav class="flex items-center gap-4" aria-label="Legal">
+        <a href="#" class="hover:text-brand-navy">Privacidad</a>
+        <a href="#" class="hover:text-brand-navy">Términos</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Menú móvil
+    (function(){
+      const b=document.getElementById('menuBtn');
+      const m=document.getElementById('menuMovil');
+      if(!b||!m) return; b.addEventListener('click',()=>{const e=b.getAttribute('aria-expanded')==='true'; b.setAttribute('aria-expanded', String(!e)); m.classList.toggle('hidden');});
+    })();
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
