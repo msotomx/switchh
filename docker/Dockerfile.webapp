@@ -19,5 +19,5 @@ COPY . /app/
 RUN useradd -m webuser && chown -R webuser:webuser /app
 USER webuser
 
-EXPOSE 8000
-CMD gunicorn switchh.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120
+EXPOSE 8001
+CMD gunicorn switchh.wsgi:application --bind 0.0.0.0:8001 --workers 3 --timeout 120
