@@ -21,13 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY_WEB')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", cast=bool, default=False)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS_WEB', default='').split(',')
-CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS_WEB', cast=Csv())
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv(), default="")
+CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", cast=Csv(), default="")
 
 # Application definition
 
@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'switchh.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": config('DATABASE_NAME_WEB'),
-        "USER": config('DATABASE_USER_WEB'),
-        "PASSWORD": config('DATABASE_PASSWORD_WEB'),
-        "HOST": config('DATABASE_HOST_WEB'),
-        "PORT": config('DATABASE_PORT_WEB'),
+        "NAME": config('DATABASE_NAME'),
+        "USER": config('DATABASE_USER'),
+        "PASSWORD": config('DATABASE_PASSWORD'),
+        "HOST": config('DATABASE_HOST'),
+        "PORT": config('DATABASE_PORT'),
     }
 }
 
@@ -125,23 +125,36 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 # para producción (collectstatic):
-STATIC_ROOT = "/webapp/staticfiles"
+
+STATIC_ROOT = "/opt/app/staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = "/webapp/media"
 MEDIA_URL = '/media/'
+MEDIA_ROOT = "/opt/app/media"
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
-EMAIL_BACKEND = config('EMAIL_BACKEND_WEB')
-EMAIL_HOST =    config('EMAIL_HOST_WEB')
-EMAIL_PORT = config('EMAIL_PORT_WEB')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER_WEB')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD_WEB')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS_WEB')
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL_WEB')
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST =    config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+
+# (ya activos)
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+SECURE_HSTS_SECONDS = int(config("SECURE_HSTS_SECONDS", default=86400))
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = False

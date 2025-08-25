@@ -3,6 +3,7 @@
 
 ### Django ###
 *.txt
+ed255*.*
 *.pub
 *.pptx
 *.pdf

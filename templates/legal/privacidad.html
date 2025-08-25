@@ -64,51 +64,75 @@
 </header>
 
   <main class="max-w-3xl mx-auto px-4 py-12">
-    <h1 class="text-3xl font-extrabold text-brand-navy">Contacto</h1>
-    <p class="mt-2 text-brand-slate/80">Déjanos tus datos y te contactamos.</p>
+    <div>
+        <strong>Política de Privacidad</strong>
+        <p class="muted">Última actualización: 25 de agosto de 2025</p>
 
-    {% if messages %}
-      <div class="mt-4 space-y-2">
-        {% for message in messages %}
-          <div class="p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800">{{ message }}</div>
-        {% endfor %}
-      </div>
-    {% endif %}
+        <p>
+            Esta Política de Privacidad describe cómo <strong>SWITCHH</strong> (“nosotros”)
+            recopila, usa y protege los datos personales de los usuarios del sitio
+            <strong>switchh.com.mx</strong> (el “Sitio”), en cumplimiento de la
+            <em>Ley Federal de Protección de Datos Personales en Posesión de los Particulares</em> (LFPDPPP) y su Reglamento.
+        </p>
 
-    <form method="post" class="mt-6 grid gap-4">
-      {% csrf_token %}
-      {{ form.website }}
-      <div>
-        <label class="block text-sm font-medium">Nombre</label>
-        {{ form.nombre.as_widget|safe }}
-      </div>
-      <div>
-        <label class="block text-sm font-medium">Email</label>
-        {{ form.email.as_widget|safe }}
-      </div>
-      <div>
-        <label class="block text-sm font-medium">Teléfono</label>
-        {{ form.telefono.as_widget|safe }}
-      </div>
-      <div>
-        <label class="block text-sm font-medium">Empresa</label>
-        {{ form.empresa.as_widget|safe }}
-      </div>
-      <div>
-        <label class="block text-sm font-medium">Mensaje</label>
-        {{ form.mensaje.as_widget|safe }}
-      </div>
-      <label class="flex items-start gap-2 text-sm">
-        {{ form.acepta_politica }} <span>Acepto la <a href="{% url 'privacidad' %}" class="underline">política de privacidad</a>.</span>
-      </label>
-      {{ form.non_field_errors }}
-      <button class="mt-2 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-brand-green text-white font-semibold">Enviar</button>
-    </form>
+        <h2>1. Responsable y contacto</h2>
+        <div class="box">
+            <p><strong>Responsable:</strong> SWITCHH•SISTEMAS</p>
+            <p><strong>Domicilio:</strong> Cartamo 8422 Cd. Juarez, Chihuahua</p>
+            <p><strong>Correo de privacidad:</strong> <a href="mailto:privacidad@switchh.com.mx">privacidad@switchh.com.mx</a></p>
+        </div>
 
-    <!--
-    <p class="mt-6 text-sm text-brand-slate/70">
-      ¿Prefieres escribirnos? <a class="underline" href="mailto:[email protected]">[email protected]</a>
-    </p> -->
+        <h2>2. Datos que recopilamos</h2>
+        <ul>
+            <li>Datos de contacto: nombre, correo, teléfono (por ejemplo, en formularios de contacto/leads).</li>
+            <li>Datos de navegación: dirección IP, identificadores de dispositivo, páginas visitadas, fecha y hora.</li>
+            <li>En su caso, mensajes y adjuntos que envíes a través del Sitio.</li>
+        </ul>
+
+        <h2>3. Finalidades del tratamiento</h2>
+        <ul>
+            <li>Atender solicitudes, cotizaciones y soporte.</li>
+            <li>Administrar los <em>leads</em> y seguimiento comercial.</li>
+            <li>Mejorar el Sitio, seguridad y prevención de fraude.</li>
+            <li>En su caso, enviar comunicaciones relacionadas con tus solicitudes (no spam).</li>
+        </ul>
+
+        <h2>4. Fundamento y consentimiento</h2>
+        <p>Tratamos tus datos con base en tu <strong>consentimiento</strong>, el <strong>cumplimiento de obligaciones</strong> derivadas de una relación, y el <strong>interés legítimo</strong> de mantener la seguridad del Sitio.</p>
+
+        <h2>5. Cookies y tecnologías similares</h2>
+        <p>
+            Usamos cookies técnicas necesarias para el funcionamiento del Sitio. Si incorporamos analítica o publicidad, te mostraremos un aviso y
+            podrás gestionar tu consentimiento. Puedes controlar cookies desde la configuración de tu navegador.
+        </p>
+
+        <h2>6. Transferencias y encargados</h2>
+        <p>
+            Podemos compartir datos con proveedores que prestan servicios para el Sitio (por ejemplo, alojamiento, correo, analítica),
+            bajo contratos que protegen tus datos. No vendemos datos personales.
+        </p>
+
+        <h2>7. Conservación</h2>
+        <p>Conservamos los datos por el tiempo necesario para cumplir con las finalidades y obligaciones legales. Después, los eliminamos o anonimizamos.</p>
+
+        <h2>8. Derechos ARCO</h2>
+        <p>
+            Puedes ejercer tus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición</strong>, así como la revocación del
+            consentimiento, escribiendo a <a href="mailto:privacidad@switchh.com.mx">privacidad@switchh.com.mx</a>.
+            Incluye tu nombre, medios de contacto, una descripción clara del derecho que deseas ejercer y, de ser posible, documentación que lo acredite.
+        </p>
+
+        <h2>9. Seguridad</h2>
+        <p>Aplicamos medidas administrativas, técnicas y físicas razonables para proteger tus datos personales contra pérdida, uso indebido o acceso no autorizado.</p>
+
+        <h2>10. Menores de edad</h2>
+        <p>El Sitio no está dirigido a menores de 18 años. Si crees que un menor nos proporcionó datos, contáctanos para eliminarlos.</p>
+
+        <h2>11. Cambios a este aviso</h2>
+        <p>Podemos actualizar esta Política. Publicaremos la nueva versión con la fecha de actualización arriba indicada.</p>
+
+        <p class="muted">Si tienes preguntas sobre esta Política, escríbenos a <a href="mailto:privacidad@switchh.com.mx">privacidad@switchh.com.mx</a>.</p>
+    </div>
   </main>
     <!-- FOOTER -->
   <footer class="border-t border-brand-gray/30 py-10 text-sm" role="contentinfo">

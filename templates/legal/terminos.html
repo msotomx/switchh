@@ -64,51 +64,48 @@
 </header>
 
   <main class="max-w-3xl mx-auto px-4 py-12">
-    <h1 class="text-3xl font-extrabold text-brand-navy">Contacto</h1>
-    <p class="mt-2 text-brand-slate/80">Déjanos tus datos y te contactamos.</p>
+    <div>
+        <strong>Términos y Condiciones</strong>
+        <p class="muted">Última actualización: 25 de agosto de 2025</p>
 
-    {% if messages %}
-      <div class="mt-4 space-y-2">
-        {% for message in messages %}
-          <div class="p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800">{{ message }}</div>
-        {% endfor %}
-      </div>
-    {% endif %}
+        <p>
+            Al acceder o utilizar <strong>switchh.com.mx</strong> (el “Sitio”), aceptas estos Términos y Condiciones (los “Términos”).
+            Si no estás de acuerdo, no utilices el Sitio.
+        </p>
 
-    <form method="post" class="mt-6 grid gap-4">
-      {% csrf_token %}
-      {{ form.website }}
-      <div>
-        <label class="block text-sm font-medium">Nombre</label>
-        {{ form.nombre.as_widget|safe }}
-      </div>
-      <div>
-        <label class="block text-sm font-medium">Email</label>
-        {{ form.email.as_widget|safe }}
-      </div>
-      <div>
-        <label class="block text-sm font-medium">Teléfono</label>
-        {{ form.telefono.as_widget|safe }}
-      </div>
-      <div>
-        <label class="block text-sm font-medium">Empresa</label>
-        {{ form.empresa.as_widget|safe }}
-      </div>
-      <div>
-        <label class="block text-sm font-medium">Mensaje</label>
-        {{ form.mensaje.as_widget|safe }}
-      </div>
-      <label class="flex items-start gap-2 text-sm">
-        {{ form.acepta_politica }} <span>Acepto la <a href="{% url 'privacidad' %}" class="underline">política de privacidad</a>.</span>
-      </label>
-      {{ form.non_field_errors }}
-      <button class="mt-2 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-brand-green text-white font-semibold">Enviar</button>
-    </form>
+        <h2>1. Uso del Sitio</h2>
+        <ul>
+            <li>Debes usar el Sitio conforme a la ley y estos Términos.</li>
+            <li>No intentes vulnerar la seguridad, realizar scraping no autorizado ni interferir con el funcionamiento.</li>
+        </ul>
 
-    <!--
-    <p class="mt-6 text-sm text-brand-slate/70">
-      ¿Prefieres escribirnos? <a class="underline" href="mailto:[email protected]">[email protected]</a>
-    </p> -->
+        <h2>2. Cuentas (si aplica)</h2>
+        <p>Si creas una cuenta, eres responsable de la confidencialidad de tus credenciales y de las actividades realizadas con tu cuenta.</p>
+
+        <h2>3. Contenido</h2>
+        <p>El contenido del Sitio es propiedad de SWITCHH o sus licenciantes. No adquieres derechos sobre marcas o contenidos salvo autorización expresa.</p>
+
+        <h2>4. Enlaces y servicios de terceros</h2>
+        <p>Podemos mostrar enlaces a sitios de terceros. No somos responsables por su contenido o prácticas.</p>
+
+        <h2>5. Mensajes y leads</h2>
+        <p>Al enviarnos un mensaje o lead, garantizas que la información es veraz y que tienes derecho a compartirla. Podemos contactarte para dar seguimiento.</p>
+
+        <h2>6. Limitación de responsabilidad</h2>
+        <p>El Sitio se ofrece “tal cual”. En la medida máxima permitida por la ley, no seremos responsables por daños indirectos, incidentales o consecuenciales derivados del uso del Sitio.</p>
+
+        <h2>7. Indemnización</h2>
+        <p>Aceptas indemnizar y mantener en paz y a salvo a SWITCHH frente a reclamaciones derivadas de tu uso del Sitio o incumplimiento de estos Términos.</p>
+
+        <h2>8. Modificaciones</h2>
+        <p>Podemos actualizar estos Términos. Publicaremos la versión vigente con la fecha de actualización indicada arriba.</p>
+
+        <h2>9. Ley aplicable y jurisdicción</h2>
+        <p>Estos Términos se rigen por las leyes de México. Cualquier controversia se someterá a los tribunales competentes de Ciudad Juárez, Chihuahua, renunciando a cualquier otro fuero.</p>
+
+        <h2>10. Contacto</h2>
+        <p>Para dudas sobre estos Términos, escríbenos a <a href="mailto:legal@switchh.com.mx">legal@switchh.com.mx</a>.</p>
+    </div>
   </main>
     <!-- FOOTER -->
   <footer class="border-t border-brand-gray/30 py-10 text-sm" role="contentinfo">
